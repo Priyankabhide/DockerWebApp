@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Docker Webapp</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="content-type" content="text/html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="front.css">
+
+    </head>
+<body>
+    <script>
+        function run()
+        {
+            i = document.getElementById("inp2").value
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://192.168.43.201/cgi-bin/jsws/docker.py?x=" + i, true);
+            xhr.send();
+        // get output from the backend-url
+            xhr.onload = function()
+             {
+                var output = xhr.responseText;
+                document.getElementById("output").innerHTML = output;
+             }
+        }
+    </script>
+    <!--  Page Border -->
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="top"></div>
+        <div id="bottom"></div>
+
+    <h1> Welcome to my console </h1> <br><br>
+
+    <h2>Play with Docker Commands 🐋👇</h2><br>
+   
+    <!--  Getting input from the client -->
+
+    <div id="inp1">
+            [root@localhost~]# &nbsp; &nbsp;<input id="inp2" type="text" size="100px" placeholder="enter your command here">
+            <br><br>
+            <button onclick="run();"> RUN</button>
+    </div>
+            <pre>
+                 <div id="output">See Your Output Here...</div>
+            </pre>
+</body>
+</html>
